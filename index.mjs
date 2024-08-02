@@ -3,6 +3,8 @@ import Jimp from 'jimp';
 import fs from 'fs';
 import { promisify } from 'util';
 import path from 'path';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const readdir = promisify(fs.readdir);
 const stat = promisify(fs.stat);
@@ -235,8 +237,7 @@ const readQr = async (imagePath) => {
         try {
             const data = formJson(value.result, imageName);
             // save folder
-            const jsonFolder = path.join(process.env.Imgroot, 'json');
-            const jsonPath = path.join(jsonFolder, `${data.image.replace('jpg', 'json')}`);
+            const jsonPath = path.join(process.env.Jsonroot, `${data.image.replace('jpg', 'json')}`);
             fs.writeFileSync(jsonPath, JSON.stringify(data));
         } catch (error) {
             console.error(error);
@@ -274,12 +275,14 @@ const listFiles = async () => {
 }
 
 const formJson = (data, imageName) => {
-    
     const info = data.split('!');
     const result = {};
     result['mesa'] = info[0];
     const listRawVotes = info[1].split(',');
     const listPartidos = [];
+    if (listRawVotes.length !== partidos.length) {
+        throw new Error('Invalid number of votes');
+    }
     listRawVotes.forEach((votes, index) => {
         listPartidos.push(setPartido(index, votes));
     });

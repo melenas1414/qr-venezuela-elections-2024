@@ -34,6 +34,7 @@ Create a `.env` file in the root of the project and define the path to the image
 
 ```env
 Imgroot=/path/to/image/directory
+Jsonroot=/path/to/json/directory
 ```
 
 ## Obtaining Images

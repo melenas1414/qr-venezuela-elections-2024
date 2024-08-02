@@ -2,10 +2,8 @@
   "name": "qr-venezuela-elections-2024",
   "version": "1.0.0",
   "description": "Retrieve QR code information for Venezuela's 2024 presidential elections",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "main": "index.mjs",
+  "scripts": {},
   "author": {
     "name": "Santiago Galán",
     "email": "santiagogalan13@gmail.com"
@@ -16,6 +14,7 @@
   },
   "dependencies": {
     "@zxing/library": "^0.21.2",
+    "dotenv": "^16.4.5",
     "jimp": "^0.22.12",
     "qrcode-reader": "^1.0.4"
   }
